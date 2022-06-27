@@ -14,7 +14,7 @@ git clone https://github.com/kumikodev/Personal-Website.git
 
 cd Personal-Website
 
-`.\install.bat
+.\install.bat
 
 .\start.bat
 ```
