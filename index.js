@@ -57,15 +57,33 @@ const date = new Date();
 const time = date.toLocaleString('en-US', { timeZone: 'America/New_York' });
 const filePath = path.join(dir, file);
 
-
-
-
-
 app.use(express.static(dir));
 
+const SECRET_URL = "IM NOT SHOWING YOU!!!";
 
 app.get('/', (req, res) => {
     res.sendFile(filePath);
+
+})
+
+app.get(`${SECRET_URL}`, (req, res) => {
+    res.send("<h1>Hello You Found Me! (DM Kumiko#0001 to claim your reward, Also Please show a sreenshot)</h1>");
+});
+
+
+app.get("/l", (req, res) => {
+    // Render the HTML file named secret.html in the public directory.
+    res.sendFile(path.join(__dirname, "public", "secret.html"));
+
+    // After 10 seconds, redirect to the secret URL.
+
+})
+
+app.get("/k", (req, res) => {
+    setTimeout(() => {
+        res.redirect(SECRET_URL);
+    }
+        , 10000);
 })
 
 app.listen(port, () => {
@@ -76,7 +94,7 @@ app.listen(port, () => {
     getGithubFollowers().then(data => {
         console.log(chalk.green(`[ ${time} ] ${data.length} followers`));
     })
-    // FOr Each File in Directory public should be logged
+    // For Each File in Directory public should be logged
     fs.readdir(dir, (err, files) => {
         if (err) throw err;
         files.forEach(file => {
