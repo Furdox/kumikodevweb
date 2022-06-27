@@ -76,4 +76,13 @@ app.listen(port, () => {
     getGithubFollowers().then(data => {
         console.log(chalk.green(`[ ${time} ] ${data.length} followers`));
     })
+    // FOr Each File in Directory public should be logged
+    fs.readdir(dir, (err, files) => {
+        if (err) throw err;
+        files.forEach(file => {
+            console.log(chalk.green(`[ ${time} ] Serving ${file}`));
+        }
+        );
+    }
+    );
 });
